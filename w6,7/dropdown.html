@@ -1,0 +1,66 @@
+<!-- Write a JavaScript which will link all the JavaScript programs through a drop -->
+<!-- down menu. -->
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropDown Menu</title>
+
+    <style>
+        .content select{
+            width: 220px;
+            height: 40px;
+        }
+        .content button {
+            width: 120px;
+            height: 40px;
+            background-color: crimson;
+            color: white;
+            border: 0px;
+        }
+        .content button:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <select id="select" class="select" onchange="redirect()">
+            <option value="0">Week 2 [TimeTable]</option>
+            <option value="1">Week 2 [Resume]</option>
+            <option value="2">Week 2 [About W3C]</option>
+    
+            <option value="3">Week 3 [Passport]</option>
+    
+            <option value="4">Week 4 [Magazine]</option>
+    
+            <option value="5">Week 5 [Lunar Eclipse]</option>
+            <option value="6">Week 5 [Solar System]</option>
+            <option value="7">Week 5 [Cradle]</option>
+    
+            <option value="8">Week 6 [Javascript Boxes]</option>
+            <option value="9">Week 6 [Browser Window]</option>
+        </select> 
+    </div>
+    <script>
+        function redirect() {
+            let rootAddress = `http://127.0.0.1:5500/`;
+            let arr = [
+                "Week2/timetable.html",
+                "Week2/resume.html",
+                "Week2/aboutw3c.html",
+                "Week3/passport.html",
+                "Week4/magazine.html",
+                "Week5/lunar.html",
+                "Week5/solar.html",
+                "Week5/cradle.html",
+                "Week6/box.html",
+                "Week6/page1.html",
+            ]
+            let selectValue = document.getElementById("select").value;
+            open(rootAddress + arr[selectValue],"_blank");
+            
+        }
+    </script>
+</body>
+</html>

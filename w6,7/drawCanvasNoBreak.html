@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Canvas</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas"></canvas>
+    </div> 
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var canvasCoordArr = [];
+        var canvasYArr = [];
+        var drawLine = false; 
+        var colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'yellow'];
+
+        const drawToCanvas = (e) => {
+            if(drawLine) {
+                canvasCoordArr.push({ 
+                    x: e.clientX,
+                    y: e.clientY,
+                    color: colors[Math.round(Math.random() * colors.length)] 
+                })  
+                ctx.canvas.width = window.innerWidth;
+                ctx.canvas.height = window.innerHeight;
+                 
+                for(var i=1;i<canvasCoordArr.length;i++) {
+                    ctx.beginPath(); 
+                    ctx.lineWidth = 5;
+                    let coordFirst = canvasCoordArr[i-1];
+                    let coordSecond = canvasCoordArr[i];
+
+                    ctx.strokeStyle = coordFirst.color;
+                    ctx.moveTo(coordFirst.x, coordFirst.y);
+                    ctx.lineTo(coordSecond.x, coordSecond.y);    
+                    ctx.stroke(); 
+                    ctx.closePath();
+                }  
+            } else {
+                canvasCoordArr.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    color: colors[Math.round(Math.random() * colors.length)] 
+                });
+                drawLine = true;
+            }
+        } 
+        window.addEventListener("click",drawToCanvas);
+    </script>
+</body>
+</html>

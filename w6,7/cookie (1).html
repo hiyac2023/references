@@ -1,0 +1,45 @@
+<!-- Create a web page with content on cookies which stores the name of the user, date of last access in a cookie. On load of
+the web page display a welcome message. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+</head>
+<body>
+
+    <script>
+        function setCookie(ename,evalue,exdays) {
+            var date = new Date();
+            date.setTime(date.getTime()+(exdays*24*60*60*1000));
+            var expires = date.toGMTString();
+            document.cookie = ename + "=" + evalue + "," + expires;
+        }
+        function getCookie(ename) {
+            var ename;
+            var decodedCookie = decodeURI(document.cookie);
+            var name = decodedCookie.split("=");
+
+            if(name.length > 1 && ename == name[0]) {
+                return decodedCookie;
+            } else {
+                return false;
+            }
+        }
+        function checkCookie() {
+            var userName = prompt("Enter UserName");
+            var user = getCookie(userName);
+            if(user) {
+                alert(`Welcome ${user.split(",")[0].split("=")[0]} Your session will expire on ${user.split(",")[1]}`)
+            } else {
+                alert("User Not Found ! Login")
+                let username = prompt("Enter username");
+                let password = prompt("Enter password");
+                setCookie(username,password, 5);
+            }
+        } 
+        checkCookie();
+    </script>
+</body>
+</html>

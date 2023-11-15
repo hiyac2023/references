@@ -1,0 +1,45 @@
+<!-- Write a web page which displays a digital clock, using the JavaScript timeout event -->
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL CLOCK</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+        .container h1{
+            color: red;
+            font-size: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="clock"></h1>
+    </div>
+    <script>
+        let clock = document.getElementById("clock");
+        const parseTime = (value) => {
+            return value <= 9 ? "0" + value : value;
+        }
+        function refreshClock() {
+            let date = new Date();
+            let clockString = parseTime(date.getHours()) + ":" + parseTime(date.getMinutes()) + ":" + parseTime(date.getSeconds());
+            clock.innerText = clockString;
+        }
+        setInterval(() => {
+            refreshClock();
+        },1000) 
+    </script>
+</body>
+</html>

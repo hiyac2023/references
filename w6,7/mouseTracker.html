@@ -1,0 +1,41 @@
+<!-- Write a web page to display mouse co-ordinates on mouse move over the canvas. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Tracker</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        #mouse {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="mouse"></h1>
+    </div>
+
+    <script>
+        const trackMouse = (e) => { 
+            let element = document.getElementById("mouse");
+            let outputStr = `Client X: ${e.clientX} | Client y: ${e.clientY}`;
+            element.textContent = outputStr;
+        }
+        window.addEventListener('mousemove', trackMouse);
+    </script>
+</body>
+</html>
