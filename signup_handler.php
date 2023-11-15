@@ -13,7 +13,7 @@ $result = $db->query($sql);
 
 // If the username already exists, display an error message
 if ($result->rowCount() > 0) {
-    echo 'Username already exists!';
+   echo '<script> alert("Username already exists!") </script>';
 } else {
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
